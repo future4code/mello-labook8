@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { AddressInfo } from "net";
 import dotenv from "dotenv"
-import { userRouter } from "./business/router/userRouter";
+import { userRouter } from "./router/UserRouter";
 
 dotenv.config();
 const app = express();
