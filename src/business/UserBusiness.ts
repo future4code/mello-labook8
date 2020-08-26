@@ -1,4 +1,4 @@
-import { UserSignupDTO } from "../model/User";
+import { UserSignupDTO, User } from "../model/User";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
@@ -30,6 +30,24 @@ export class UserBusiness {
 
     await new UserDatabase().signup(id, user.name, user.email, hashPassword)
 
+    return token
+  }
+
+  public async login(email: string, password: string) {
+
+    if(!email || !password) {
+      throw new Error('Preencha todos os campos')
+    }
+
+    const user = await new UserDatabase().getUserByEmail(email)
+
+    const passwordTest = await new HashManager().compare(password, user.getPassword() as string)
+    if(!passwordTest) {
+      throw new Error('Senha incorreta')
+    }
+
+    const id = user.getId()
+    const token = new Authenticator().generateToken({id})
     return token
   }
 }
