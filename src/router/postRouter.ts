@@ -1,5 +1,5 @@
 import express from 'express';
-import getFeed from '../controller/getFeed';
+// import getFeed from '../controller/getFeed';
 import PostControler from '../controller/PostController';
 import { Post } from '../model/Post';
 
