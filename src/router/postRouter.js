@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postRouter = void 0;
 const express_1 = __importDefault(require("express"));
+// import getFeed from '../controller/getFeed';
 const PostController_1 = __importDefault(require("../controller/PostController"));
 exports.postRouter = express_1.default.Router();
 const postController = new PostController_1.default();
