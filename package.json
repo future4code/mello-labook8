@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node tati.ts",
-    "start:dev": "ts-node-dev src/tati.ts",
+    "start": "ts-node index.ts",
+    "start:dev": "ts-node-dev src/index.ts",
     "build": "tsc index.ts",
     "build:run": "tsc index.ts && node index.js"
   },
