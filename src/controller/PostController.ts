@@ -83,11 +83,11 @@ export default class PostControler {
         } catch (error) {
             res.status(400).send(error.message)
         }
-    }
+    };
 
     public async dislikePost(req: Request, res: Response) {
         try {
-            const  post_id  = req.body.post_id as string
+            const post_id  = req.body.post_id as string
             const token = req.headers.authorization as string
             const tokenData = new Authenticator().getData(token)
 
@@ -101,5 +101,23 @@ export default class PostControler {
         } catch (error) {
             res.status(400).send(error.message)
         }
-    }
+    };
+
+    public async comment(req: Request, res: Response) {
+        try {
+            const post_id  = req.body.post_id as string
+            const token = req.headers.authorization as string
+            const tokenData = new Authenticator().getData(token)
+
+            const alreadyLike = await new PostBusiness().getLikes(tokenData.id)
+            if (alreadyLike < 0) {
+                res.status(200).send({ message: "Você não curtia esse post." })
+            } else {
+                await new PostBusiness().dislikePost(tokenData.id, post_id as string)
+                res.status(200).send({ message: "Descurtido com sucesso "})
+            }
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+    };
 }

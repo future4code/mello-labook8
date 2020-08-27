@@ -48,7 +48,7 @@ export default class PostsDatabase extends BaseDatabase {
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
-    }
+    };
 
     public async dislikePost(user_id: string, post_id: string): Promise<void> {
         try {
@@ -59,7 +59,7 @@ export default class PostsDatabase extends BaseDatabase {
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
-    }
+    };
 
     public async getLikes(user_id: string) : Promise<any> {
         try {
@@ -72,5 +72,6 @@ export default class PostsDatabase extends BaseDatabase {
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
-    }
+    };
+
 }
