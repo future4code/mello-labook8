@@ -10,7 +10,7 @@ export const UnFollowUser = async (req: Request, res: Response) => {
     const user_to_unfollow_id = req.body.user_to_unfollow_id;
 
     const authenticator = new Authenticator();
-    const authenticationData = authenticator.verify(token);
+    const authenticationData = authenticator.getData(token);
     const user_id = authenticationData.id;
 
     if (!user_to_unfollow_id) {
