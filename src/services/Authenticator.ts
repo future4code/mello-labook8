@@ -9,7 +9,7 @@ export class Authenticator {
 
       process.env.JWT_KEY as string,
       {
-        expiresIn: process.env.JWT_EXPIRES_IN,
+        expiresIn: process.env.JWT_EXPIRES_IN as string,
       }
     );
 
@@ -22,13 +22,6 @@ export class Authenticator {
       id: payload.id,
     };
     return result;
-  }
-
-  public verify(token: string): AuthenticationData {
-    const data = jwt.verify(token, process.env.JWT_KEY as string) as any;
-    return {
-      id: data.id,
-    };
   }
 }
 

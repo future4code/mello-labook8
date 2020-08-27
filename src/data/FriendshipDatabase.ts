@@ -17,11 +17,11 @@ export class FriendshipDatabase extends BaseDatabase {
 
   public async unFollowUser(
     user_id: string,
-    user_to_unfollow_id: string
+    user_to_follow_id: string
   ): Promise<void> {
     await this.getConnection().del().from(FriendshipDatabase.TABLE_DB).where({
       user_id,
-      user_to_unfollow_id,
+      user_to_follow_id,
     });
   }
 }
