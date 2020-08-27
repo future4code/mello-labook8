@@ -5,7 +5,7 @@ import { userRouter } from "./router/UserRouter";
 import { postRouter } from "./router/postRouter";
 import { FollowUser } from "./controller/FollowUser";
 import { UnFollowUser } from "./controller/UnFollowUser";
-import { RefreshController } from "./controller/RefreshToken";
+import { RefreshController } from "./controller/RefreshTokenController";
 
 dotenv.config();
 const app = express();

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import RefreshTokenDatabase from "../data/RefreshTokenDatabase";
+import RTBusiness from "../business/RefreshTokenBusiness";
 
 export class RefreshController {
     public async createRefreshToken(req: Request, res: Response) {
@@ -10,7 +11,7 @@ export class RefreshController {
                 isActive: req.body.isActive as string,
                 userId: req.body.userId as string
             }
-            const token = await new RefreshTokenDatabase().generateRefreshToken(input)
+            const token = await new RTBusiness().createRefreshToken(input)
             res.status(200).send({ message: "RefreshToken criado! :)", token: token })
         } catch (error) {
             res.status(400).send({ error: error.message })
@@ -19,8 +20,8 @@ export class RefreshController {
 
     public async getRefreshToken(req: Request, res: Response) {
         try {
-            const token = req.headers.authorization as string
-            const response = await new RefreshTokenDatabase().getRefreshData(token)
+            const id = req.body.id as string
+            const response = await new RTBusiness().getRefreshData(id)
             res.status(200).send({ message: "RefreshToken criado! :)", token: response })
         } catch (error) {
             res.status(400).send({ error: error.message })
