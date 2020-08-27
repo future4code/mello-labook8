@@ -1,4 +1,5 @@
 import { BaseDatabase } from "./BaseDatabase";
+import { Post } from "../model/Post";
 
 export class FriendshipDatabase extends BaseDatabase {
   private static TABLE_DB = "Friendship_Labook";
@@ -24,4 +25,19 @@ export class FriendshipDatabase extends BaseDatabase {
       user_to_follow_id,
     });
   }
+
+  public async getFeed(id: string): Promise<Post[]> {
+    try {
+      const result = await this.getConnection().raw(`
+            SELECT picture, description, created_at, type, f.user_id FROM Friendship_Labook f
+            JOIN Posts_Labook p ON p.user_id = f.user_to_follow_id
+            WHERE f.user_id = "${id}"
+            ORDER BY created_at ASC
+        `)
+      return result[0];
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message)
+    }
+  };
+
 }
