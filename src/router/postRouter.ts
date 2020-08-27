@@ -9,4 +9,4 @@ const postController = new PostControler()
 
 postRouter.post('/create', postController.createPost)
 postRouter.get('/search', postController.getPostByType)
-// postRouter.get('/feed', getFeed)
+postRouter.get('/feed', postController.getFeed)
