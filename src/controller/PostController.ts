@@ -53,7 +53,8 @@ export default class PostControler {
     public async getFeed(req: Request, res: Response) {
         try {
             const token = req.headers.authorization as string;
-            const feed = await new FriendshipBusiness().getFeed(token)
+            const page = req.query.page as string;
+            const feed = await new FriendshipBusiness().getFeed(token, page)
 
             for (let post of feed) {
                 const postDate = post.created_at
