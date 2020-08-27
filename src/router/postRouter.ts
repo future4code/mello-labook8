@@ -1,5 +1,4 @@
 import express from 'express';
-// import getFeed from '../controller/getFeed';
 import PostControler from '../controller/PostController';
 import { Post } from '../model/Post';
 
@@ -10,3 +9,5 @@ const postController = new PostControler()
 postRouter.post('/create', postController.createPost)
 postRouter.get('/search', postController.getPostByType)
 postRouter.get('/feed', postController.getFeed)
+postRouter.post('/like', postController.likePost)
+postRouter.post('/dislike', postController.dislikePost)
