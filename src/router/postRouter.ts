@@ -10,3 +10,4 @@ postRouter.get('/search', postController.getPostByType)
 postRouter.get('/feed', postController.getFeed)
 postRouter.post('/like', postController.likePost)
 postRouter.post('/dislike', postController.dislikePost)
+postRouter.post("/comment", postController.comment);

@@ -6,6 +6,7 @@ import { postRouter } from "./router/postRouter";
 import { FollowUser } from "./controller/FollowUser";
 import { UnFollowUser } from "./controller/UnFollowUser";
 import { refreshRouter } from "./router/refreshRouter";
+import PostControler from "./controller/PostController";
 
 dotenv.config();
 const app = express();
@@ -32,4 +33,5 @@ app.use("/user", userRouter);
 app.use("/post", postRouter);
 app.post("/user/follow", FollowUser);
 app.post("/user/unfollow", UnFollowUser);
+
 app.use('/refresh', refreshRouter);
