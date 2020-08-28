@@ -2,6 +2,7 @@ import PostsDatabase from "../data/PostsDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { Authenticator } from "../services/Authenticator";
 import { Post } from "../model/Post";
+import CommentDatabase from "../data/CommentDatabase";
 
 const postDatabase = new PostsDatabase()
 
@@ -78,5 +79,19 @@ export default class PostBusiness {
         }
     };
 
+    public async comment(comment: string, postId: string, userId: string) : Promise<void> {
+        try {
+            if (!comment) {
+                throw new Error("Não pode comentar sem comentário.")
+            }
+            if (!postId || !userId) {
+                throw new Error("Forneça informações corretamente.")
+            }
+            await new CommentDatabase().comment(comment, postId, userId)
+
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
     
 }

@@ -17,8 +17,6 @@ export default class FriendshipBusiness {
             const pageNumber = Number(page)
             const offset = postsPerPage * (pageNumber - 1);
 
-
-
             const tokenData = new Authenticator().getData(token)
             const feed = await new FriendshipDatabase().getFeed(tokenData.id, postsPerPage, offset)
 
