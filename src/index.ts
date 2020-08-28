@@ -5,7 +5,7 @@ import { userRouter } from "./router/UserRouter";
 import { postRouter } from "./router/postRouter";
 import { FollowUser } from "./controller/FollowUser";
 import { UnFollowUser } from "./controller/UnFollowUser";
-import { RefreshController } from "./controller/RefreshTokenController";
+import { refreshRouter } from "./router/refreshRouter";
 
 dotenv.config();
 const app = express();
@@ -19,7 +19,7 @@ app.get("/teste", async (req: Request, res: Response) => {
   }
 });
 
-const server = app.listen(3003, () => {
+const server = app.listen(3306, () => {
   if (server) {
     const address = server.address() as AddressInfo;
     console.log(`Server is running in http://localhost: ${address.port}`);
@@ -32,5 +32,4 @@ app.use("/user", userRouter);
 app.use("/post", postRouter);
 app.post("/user/follow", FollowUser);
 app.post("/user/unfollow", UnFollowUser);
-app.post("/refresh/create", new RefreshController().createRefreshToken);
-app.get("/refresh/get", new RefreshController().createRefreshToken);
+app.use('/refresh', refreshRouter);

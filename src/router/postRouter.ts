@@ -1,6 +1,5 @@
 import express from 'express';
 import PostControler from '../controller/PostController';
-import { Post } from '../model/Post';
 
 export const postRouter = express.Router();
 

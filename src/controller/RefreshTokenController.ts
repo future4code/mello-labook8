@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import RefreshTokenDatabase from "../data/RefreshTokenDatabase";
 import RTBusiness from "../business/RefreshTokenBusiness";
 
-export class RefreshController {
+export default class RefreshController {
     public async createRefreshToken(req: Request, res: Response) {
         try {
             const input = {
