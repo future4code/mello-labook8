@@ -36,13 +36,11 @@ export default class PostBusiness {
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
-    }
+    };
 
     public async getLikes(user_id: string): Promise<number> {
         try {
             const result = await postDatabase.getLikes(user_id)
-
-
             let alreadyLike;
 
             if (result !== undefined) {
@@ -50,13 +48,13 @@ export default class PostBusiness {
             } else {
                 alreadyLike = -1
             };
-            
+
             return alreadyLike
 
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
-    }
+    };
 
     public async likePost(user_id: string, post_id: string): Promise<void> {
         try {
@@ -67,7 +65,7 @@ export default class PostBusiness {
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
-    }
+    };
 
     public async dislikePost(user_id: string, post_id: string): Promise<void> {
         try {
@@ -78,5 +76,7 @@ export default class PostBusiness {
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
-    }
+    };
+
+    
 }

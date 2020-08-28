@@ -6,7 +6,6 @@ export class Authenticator {
       {
         id: input.id,
       },
-
       process.env.JWT_KEY as string,
       {
         expiresIn: process.env.JWT_EXPIRES_IN as string,

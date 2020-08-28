@@ -26,13 +26,16 @@ export class FriendshipDatabase extends BaseDatabase {
     });
   }
 
-  public async getFeed(id: string): Promise<Post[]> {
+  public async getFeed(id: string, postsPerPage: number, offset: number): Promise<Post[]> {
     try {
       const result = await this.getConnection().raw(`
             SELECT picture, description, created_at, type, f.user_id FROM Friendship_Labook f
-            JOIN Posts_Labook p ON p.user_id = f.user_to_follow_id
+            JOIN Posts_Labook p 
+            ON p.user_id = f.user_to_follow_id
             WHERE f.user_id = "${id}"
             ORDER BY created_at DESC
+            LIMIT ${postsPerPage}
+            OFFSET ${offset};
         `)
       return result[0];
     } catch (error) {
