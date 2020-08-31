@@ -3,8 +3,6 @@ import { AddressInfo } from "net";
 import dotenv from "dotenv";
 import { userRouter } from "./router/UserRouter";
 import { postRouter } from "./router/postRouter";
-import { FollowUser } from "./controller/FollowUser";
-import { UnFollowUser } from "./controller/UnFollowUser";
 import { refreshRouter } from "./router/refreshRouter";
 import PostControler from "./controller/PostController";
 
@@ -31,7 +29,4 @@ const server = app.listen(3306, () => {
 
 app.use("/user", userRouter);
 app.use("/post", postRouter);
-app.post("/user/follow", FollowUser);
-app.post("/user/unfollow", UnFollowUser);
-
 app.use('/refresh', refreshRouter);

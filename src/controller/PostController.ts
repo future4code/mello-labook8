@@ -112,7 +112,7 @@ export default class PostControler {
             const token = req.headers.authorization as string
             const tokenData = new Authenticator().getData(token)
 
-            await new CommentDatabase().comment(comment as string, postId as string, tokenData.id)
+            await new PostBusiness().comment(comment as string, postId as string, tokenData.id as string)
 
             res.status(200).send({ message: "Comentario enviado!" })
 
